@@ -1,7 +1,5 @@
 #ifndef SUDOKU_H
 #define SUDOKU_H
-#include<iostream>
-#include<cstdlib>
 
 class Sudoku {
 	public:
@@ -16,5 +14,5 @@ class Sudoku {
 		void transform();
 		void change();
 	private:
-		
+		int map[9][9];
 };
