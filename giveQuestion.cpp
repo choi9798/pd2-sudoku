@@ -1,5 +1,16 @@
 #include "sudoku.h"
 
+void Sudoku::readIn()
+{
+	for(int i=0;i<9;i++)
+	{
+		for(int j=0;j<9;j++)
+		{
+			in >> map[i][j];
+		}
+	}
+}
+
 void Sudoku::changeNum(int a, int b, int c, int d)
 {
 	int temp;
