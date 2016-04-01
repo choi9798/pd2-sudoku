@@ -1,16 +1,5 @@
 #include "Sudoku.h"
 
-Sudoku::Sudoku()
-{
-	for(int i=0;i<9;i++)
-	{
-		for(int j=0;j<9;j++)
-		{
-			real_map[i][j] = 0;
-		}
-	}
-}
-
 void Sudoku::giveQuestion()
 {
 	int original[9][9] = {{0,3,0,5,0,0,8,0,4},
