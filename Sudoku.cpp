@@ -35,7 +35,7 @@ void Sudoku::readIn()
 	{
 		for(int j=0;j<9;j++)
 		{
-			cin >> real_map[i][j]
+			cin >> real_map[i][j];
 		}
 	}
 }
@@ -64,7 +64,7 @@ void Sudoku::changeNum(int a, int b)
 			}
 			else if(real_map[i][j] == b)
 			{
-				_real_map[i][j] = a;
+				real_map[i][j] = a;
 				continue;
 			}
 		}
@@ -516,6 +516,14 @@ void Sudoku::solve()
 	else if(nozero() == true && isCorrect() == true)
 	{
 		cout << "1" << endl;
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<9;j++)
+			{
+				cout << ans[i][j] << " ";
+			}
+			cout << endl;
+		}
 		exit(0);
 	}
 	zero_position();
@@ -541,5 +549,3 @@ void Sudoku::solve()
 		exit(0);
 	}
 }
-
-
