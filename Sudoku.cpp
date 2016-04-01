@@ -452,8 +452,7 @@ void Sudoku::zero_position()
 }
 
 void Sudoku::backtrack()
-{
-	int k=0;
+{	
 	if(isCorrect() != true)
 	{
 		real_map[zero_posRow[index]][zero_posCol[index]] = 0;
@@ -493,10 +492,9 @@ void Sudoku::backtrack()
 		cout << "2" << endl;
 		exit(0);
 	}
-	while(possible_num[k] > 0)
+	for(int i=0;possible_num[i]>0;i++)
 	{
 		real_map[zero_posRow[index]][zero_posCol[index]] = possible_num[k];
-		k++;
 		backtrack();
 	}
 	index--;
