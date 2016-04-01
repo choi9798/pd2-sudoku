@@ -210,24 +210,22 @@ void Sudoku::rotate(int n)
 	}
 	else if(n%4 == 2)
 	{
-		for(int k=1;k<=2;k++)
+		for(int i=0;i<9;i++)
 		{
-			for(int i=0;i<9;i++)
+			for(int j=0;j<9;j++)
 			{
-				for(int j=0;j<9;j++)
-				{
-					temp[i][j] = real_map[i][j];
-				}
+				temp[i][j] = real_map[i][j];
 			}
-			for(int i=0;i<9;i++)
+		}
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<9;j++)
 			{
-				for(int j=0;j<9;j++)
-				{
-					real_map[j][8-i] = temp[i][j];
-				}
+				real_map[8-i][8-j] = temp[i][j];
 			}
 		}
 	}
+}
 	else if(n%4 == 3)
 	{
 		for(int i=0;i<9;i++)
