@@ -11,19 +11,18 @@ void Sudoku::giveQuestion()
 	                 	  {9,2,7,0,6,8,0,5,0},
 	                 	  {0,1,0,0,2,0,0,0,0},
 	                 	  {5,0,6,0,0,1,0,2,0}};
-	for(int i=0;i<9;i++)
+	/*for(int i=0;i<9;i++)
 	{
 		for(int j=0;j<9;j++)
 		{
 			real_map[i][j] = original[i][j];
 		}
-	}
-	transform();
+	}*/
 	for(int i=0;i<9;i++)
 	{
 		for(int j=0;j<9;j++)
 		{
-			cout << real_map[i][j] << " ";
+			cout << original[i][j] << " ";
 		}
 		cout << endl;
 	}
@@ -40,7 +39,7 @@ void Sudoku::readIn()
 	}
 }
 
-void Sudoku::transform()
+void Sudoku::change()
 {
 	srand(time(NULL));
 	changeNum(rand()%9+1, rand()%9+1);
@@ -50,6 +49,38 @@ void Sudoku::transform()
 	flip(rand()%2);
 }
 
+void Sudoku::transform()
+{
+	readIn();
+	change();
+	printOut(false);
+}
+
+void Sudoku::printOut(bool isAns)
+{
+	if(!isAns)
+	{
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<9;j++)
+			{
+				cout << real_map[i][j] << " ";
+			}
+			cout << endl;
+		}
+	}
+	else
+	{
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<9;j++)
+			{
+				cout << ans[i][j] << " ";
+			}
+			cout << endl;
+		}
+	}
+}
 
 void Sudoku::changeNum(int a, int b)
 {
@@ -74,7 +105,7 @@ void Sudoku::changeNum(int a, int b)
 void Sudoku::changeRow(int a, int b)
 {
 	int temp;
-	if((a>=0 && a<=2 && b>=3 && b<=5) || (b>=0 && b<=2 && a>=3 && a<=5))
+	if((a==0 && b==1) || (b==0 && a==1))
 	{
 		for(int i=1;i<=3;i++)
 		{
@@ -86,7 +117,7 @@ void Sudoku::changeRow(int a, int b)
 			}
 		}
 	}
-	else if((a>=0 && a<=2 && b>=6 && b<=8) || (b>=0 && b<=2 && a>=6 && a<=8))
+	else if((a==0 && b==2) || (b==0 && a==2))
 	{
 		for(int i=1;i<=3;i++)
 		{
@@ -98,9 +129,9 @@ void Sudoku::changeRow(int a, int b)
 			}
 		}
 	}
-	else if((a>=3 && a<=5 && b>=6 && b<=8) || (b>=3 && b<=5 && a>=6 && a<=8))
+	else if((a==1 && b==2) || (b==2 && a==1))
 	{
-		for(int i=3;i<=6;i++)
+		for(int i=4;i<=6;i++)
 		{
 			for(int j=1;j<=9;j++)
 			{
@@ -115,31 +146,31 @@ void Sudoku::changeRow(int a, int b)
 void Sudoku::changeCol(int a, int b)
 {
 	int temp;
-	if((a>=0 && a<=2 && b>=3 && b<=5) || (b>=0 && b<=2 && a>=3 && a<=5))
+	if((a==0 && b==1) || (b==0 && a==1))
 	{
 		for(int i=1;i<=3;i++)
 		{
 			for(int j=1;j<=9;j++)
 			{
 				temp = real_map[j-1][i-1];
-				real_map[j-1][i-1] = real_map[j+3-1][i-1];
-				real_map[j+3-1][i-1] = temp;
+				real_map[j-1][i-1] = real_map[j-1][i+3-1];
+				real_map[j-1][i+3-1] = temp;
 			}
 		}
 	}
-	else if((a>=0 && a<=2 && b>=6 && b<=8) || (b>=0 && b<=2 && a>=6 && a<=8))
+	else if((a==1 && b==2) || (b==2 && a==1))
 	{
 		for(int i=1;i<=3;i++)
 		{
 			for(int j=1;j<=9;j++)
 			{
 				temp = real_map[j-1][i-1];
-				real_map[j-1][i-1] = real_map[j+6-1][i-1];
-				real_map[j+6-1][i-1] = temp;
+				real_map[j-1][i-1] = real_map[j-1][i+6-1];
+				real_map[j-1][i+6-1] = temp;
 			}
 		}
 	}
-	else if((a>=3 && a<=5 && b>=6 && b<=8) || (b>=3 && b<=5 && a>=6 && a<=8))
+	else if((a==1 && b==2) || (b==2 && a==1))
 	{
 		for(int i=4;i<=6;i++)
 		{
@@ -155,52 +186,62 @@ void Sudoku::changeCol(int a, int b)
 
 void Sudoku::rotate(int n)
 {
-	int temp;
-	if(n%4 != 0)
+	int temp[9][9];
+	if(n%4 == 0)
 	{
-		if(n%4 == 1)
+		return;
+	}
+	if(n%4 == 1)
+	{
+		for(int i=0;i<9;i++)
 		{
-			for(int i=0;i<5;i++)
+			for(int j=0;j<9;j++)
 			{
-				for(int j=0+i;j<8-i;j++)
+				temp[i][j] = real_map[i][j];
+			}
+		}
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<9;j++)
+			{
+				real_map[j][8-i] = temp[i][j];
+			}
+		}
+	}
+	else if(n%4 == 2)
+	{
+		for(int k=1;k<=2;k++)
+		{
+			for(int i=0;i<9;i++)
+			{
+				for(int j=0;j<9;j++)
 				{
-					temp = real_map[i][j];
-					real_map[i][j] = real_map[i][8-j];
-					real_map[i][8-j] = real_map[8-i][8-j];
-					real_map[8-i][8-j] = real_map[8-i][j];
-					real_map[8-i][j] = temp;
+					temp[i][j] = real_map[i][j];
+				}
+			}
+			for(int i=0;i<9;i++)
+			{
+				for(int j=0;j<9;j++)
+				{
+					real_map[j][8-i] = temp[i][j];
 				}
 			}
 		}
-		else if(n%4 == 2)
+	}
+	else if(n%4 == 3)
+	{
+		for(int i=0;i<9;i++)
 		{
-			for(int k=1;k<=2;k++)
+			for(int j=0;j<9;j++)
 			{
-				for(int i=0;i<5;i++)
-				{
-					for(int j=0+i;j<8-i;j++)
-					{
-						temp = real_map[i][j];
-						real_map[i][j] = real_map[i][8-j];
-						real_map[i][8-j] = real_map[8-i][8-j];
-						real_map[8-i][8-j] = real_map[8-i][j];
-						real_map[8-i][j] = temp;
-					}
-				}
+				temp[i][j] = real_map[i][j];
 			}
 		}
-		else if(n%4 == 3)
+		for(int i=0;i<9;i++)
 		{
-			for(int i=0;i<5;i++)
+			for(int j=0;j<9;j++)
 			{
-				for(int j=0+i;j<8-i;j++)
-				{
-					temp = real_map[i][j];
-					real_map[i][j] = real_map[8-i][j];
-					real_map[8-i][j] = real_map[8-i][8-j];
-					real_map[8-i][8-j] = real_map[i][8-j];
-					real_map[i][8-j] = temp;
-				}
+				real_map[8-j][i] = temp[i][j];
 			}
 		}
 	}
@@ -524,14 +565,7 @@ void Sudoku::solve()
 	else if(nozero() == true && isCorrect() == true)
 	{
 		cout << "1" << endl;
-		for(int i=0;i<9;i++)
-		{
-			for(int j=0;j<9;j++)
-			{
-				cout << ans[i][j] << " ";
-			}
-			cout << endl;
-		}
+		printOut(false);
 		exit(0);
 	}
 	zero_position();
@@ -546,14 +580,7 @@ void Sudoku::solve()
 	else if(answer == 1)
 	{
 		cout << "1" << endl;
-		for(int i=0;i<9;i++)
-		{
-			for(int j=0;j<9;j++)
-			{
-				cout << ans[i][j] << " ";
-			}
-			cout << endl;
-		}
+		printOut(true);
 		exit(0);
 	}
 }
