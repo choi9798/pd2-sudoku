@@ -20,7 +20,6 @@ class Sudoku {
 		void possible(int arr[][9]);
 		void backtrack();
 	private:
-		int map[9][9];
 		int real_map[9][9];
 		int ans[9][9];
 		int possible_num[9];
