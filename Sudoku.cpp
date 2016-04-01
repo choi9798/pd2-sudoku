@@ -15,7 +15,7 @@ void Sudoku::giveQuestion()
 	{
 		for(int j=0;j<9;j++)
 		{
-			map[i][j] = original[i][j];
+			real_real_map[i][j] = original[i][j];
 		}
 	}
 	transform();
@@ -23,7 +23,7 @@ void Sudoku::giveQuestion()
 	{
 		for(int j=0;j<9;j++)
 		{
-			cout << map[i][j] << " ";
+			cout << real_real_map[i][j] << " ";
 		}
 		cout << endl;
 	}
@@ -35,7 +35,7 @@ void Sudoku::readIn()
 	{
 		for(int j=0;j<9;j++)
 		{
-			real_map[i][j] = map[i][j];
+			cin >> real_real_map[i][j]
 		}
 	}
 }
@@ -57,14 +57,14 @@ void Sudoku::changeNum(int a, int b)
 	{
 		for(int j=0;j<9;j++)
 		{
-			if(map[i][j] == a)
+			if(real_real_map[i][j] == a)
 			{
-				map[i][j] = b;
+				real_real_map[i][j] = b;
 				continue;
 			}
-			else if(map[i][j] == b)
+			else if(real_real_map[i][j] == b)
 			{
-				map[i][j] = a;
+				real_real_map[i][j] = a;
 				continue;
 			}
 		}
@@ -80,9 +80,9 @@ void Sudoku::changeRow(int a, int b)
 		{
 			for(int j=1;j<=9;j++)
 			{
-				temp = map[i-1][j-1];
-				map[i-1][j-1] = map[i+3-1][j-1];
-				map[i+3-1][j-1] = temp;
+				temp = real_real_map[i-1][j-1];
+				real_real_map[i-1][j-1] = real_real_map[i+3-1][j-1];
+				real_real_map[i+3-1][j-1] = temp;
 			}
 		}
 	}
@@ -92,9 +92,9 @@ void Sudoku::changeRow(int a, int b)
 		{
 			for(int j=1;j<=9;j++)
 			{
-				temp = map[i-1][j-1];
-				map[i-1][j-1] = map[i+6-1][j-1];
-				map[i+6-1][j-1] = temp;
+				temp = real_real_map[i-1][j-1];
+				real_real_map[i-1][j-1] = real_real_map[i+6-1][j-1];
+				real_real_map[i+6-1][j-1] = temp;
 			}
 		}
 	}
@@ -104,9 +104,9 @@ void Sudoku::changeRow(int a, int b)
 		{
 			for(int j=1;j<=9;j++)
 			{
-				temp = map[i-1][j-1];
-				map[i-1][j-1] = map[i+3-1][j-1];
-				map[i+3-1][j-1] = temp;
+				temp = real_real_map[i-1][j-1];
+				real_real_map[i-1][j-1] = real_real_map[i+3-1][j-1];
+				real_real_map[i+3-1][j-1] = temp;
 			}
 		}
 	}
@@ -121,9 +121,9 @@ void Sudoku::changeCol(int a, int b)
 		{
 			for(int j=1;j<=9;j++)
 			{
-				temp = map[j-1][i-1];
-				map[j-1][i-1] = map[j+3-1][i-1];
-				map[j+3-1][i-1] = temp;
+				temp = real_real_map[j-1][i-1];
+				real_real_map[j-1][i-1] = real_real_map[j+3-1][i-1];
+				real_real_map[j+3-1][i-1] = temp;
 			}
 		}
 	}
@@ -133,9 +133,9 @@ void Sudoku::changeCol(int a, int b)
 		{
 			for(int j=1;j<=9;j++)
 			{
-				temp = map[j-1][i-1];
-				map[j-1][i-1] = map[j+6-1][i-1];
-				map[j+6-1][i-1] = temp;
+				temp = real_real_map[j-1][i-1];
+				real_real_map[j-1][i-1] = real_real_map[j+6-1][i-1];
+				real_real_map[j+6-1][i-1] = temp;
 			}
 		}
 	}
@@ -145,9 +145,9 @@ void Sudoku::changeCol(int a, int b)
 		{
 			for(int j=1;j<=9;j++)
 			{
-				temp = map[j-1][i-1];
-				map[j-1][i-1] = map[j-1][i+3-1];
-				map[j-1][i+3-1] = temp;
+				temp = real_real_map[j-1][i-1];
+				real_real_map[j-1][i-1] = real_real_map[j-1][i+3-1];
+				real_real_map[j-1][i+3-1] = temp;
 			}
 		}
 	}
@@ -164,11 +164,11 @@ void Sudoku::rotate(int n)
 			{
 				for(int j=0+i;j<8-i;j++)
 				{
-					temp = map[i][j];
-					map[i][j] = map[i][8-j];
-					map[i][8-j] = map[8-i][8-j];
-					map[8-i][8-j] = map[8-i][j];
-					map[8-i][j] = temp;
+					temp = real_real_map[i][j];
+					real_real_map[i][j] = real_real_map[i][8-j];
+					real_real_map[i][8-j] = real_real_map[8-i][8-j];
+					real_real_map[8-i][8-j] = real_real_map[8-i][j];
+					real_real_map[8-i][j] = temp;
 				}
 			}
 		}
@@ -180,11 +180,11 @@ void Sudoku::rotate(int n)
 				{
 					for(int j=0+i;j<8-i;j++)
 					{
-						temp = map[i][j];
-						map[i][j] = map[i][8-j];
-						map[i][8-j] = map[8-i][8-j];
-						map[8-i][8-j] = map[8-i][j];
-						map[8-i][j] = temp;
+						temp = real_real_map[i][j];
+						real_real_map[i][j] = real_real_map[i][8-j];
+						real_real_map[i][8-j] = real_real_map[8-i][8-j];
+						real_real_map[8-i][8-j] = real_real_map[8-i][j];
+						real_real_map[8-i][j] = temp;
 					}
 				}
 			}
@@ -195,11 +195,11 @@ void Sudoku::rotate(int n)
 			{
 				for(int j=0+i;j<8-i;j++)
 				{
-					temp = map[i][j];
-					map[i][j] = map[8-i][j];
-					map[8-i][j] = map[8-i][8-j];
-					map[8-i][8-j] = map[i][8-j];
-					map[i][8-j] = temp;
+					temp = real_real_map[i][j];
+					real_real_map[i][j] = real_real_map[8-i][j];
+					real_real_map[8-i][j] = real_real_map[8-i][8-j];
+					real_real_map[8-i][8-j] = real_real_map[i][8-j];
+					real_real_map[i][8-j] = temp;
 				}
 			}
 		}
@@ -213,42 +213,42 @@ void Sudoku::flip(int n)
 	{
 		for(int i=0;i<9;i++)
 		{
-			temp = map[0][i];
-			map[0][i] = map[8][i];
-			map[8][i] = temp;
+			temp = real_real_map[0][i];
+			real_real_map[0][i] = real_real_map[8][i];
+			real_real_map[8][i] = temp;
 
-			temp = map[1][i];
-			map[1][i] = map[7][i];
-			map[7][i] = temp;
+			temp = real_real_map[1][i];
+			real_real_map[1][i] = real_real_map[7][i];
+			real_real_map[7][i] = temp;
 
-			temp = map[2][i];
-			map[2][i] = map[6][i];
-			map[6][i] = temp;
+			temp = real_real_map[2][i];
+			real_real_map[2][i] = real_real_map[6][i];
+			real_real_map[6][i] = temp;
 			
-			temp = map[3][i];
-			map[3][i] = map[5][i];
-			map[5][i] = temp;
+			temp = real_real_map[3][i];
+			real_real_map[3][i] = real_real_map[5][i];
+			real_real_map[5][i] = temp;
 		}
 	}
 	else if(n==1)
      {
          for(int i=0;i<9;i++)
          {
-             temp = map[i][0];
-             map[i][0] = map[i][8];
-             map[i][8] = temp;
+             temp = real_map[i][0];
+             real_map[i][0] = real_map[i][8];
+             real_map[i][8] = temp;
 
-             temp = map[i][1];
-             map[i][1] = map[i][7];
-             map[i][7] = temp;
+             temp = real_map[i][1];
+             real_map[i][1] = real_map[i][7];
+             real_map[i][7] = temp;
 
-             temp = map[i][2];
-             map[i][2] = map[i][6];
-             map[i][6] = temp;
+             temp = real_map[i][2];
+             real_map[i][2] = real_map[i][6];
+             real_map[i][6] = temp;
 
-             temp = map[i][3];
-             map[i][3] = map[i][5];
-             map[i][5] = temp;
+             temp = real_map[i][3];
+             real_map[i][3] = real_map[i][5];
+             real_map[i][5] = temp;
          }
     }
 }
@@ -281,7 +281,7 @@ bool Sudoku::isCorrect()
 	{
 		for(int j=0;j<9;j++)
 		{
-			check_arr[j] = real_map[i][j];
+			check_arr[j] = real_real_map[i][j];
 		}
 		check_result = checkUnity(check_arr);
 		if(check_result == false)
@@ -293,7 +293,7 @@ bool Sudoku::isCorrect()
 	{
 		for(int j=0;j<9;j++)
 		{
-			check_arr[j] = real_map[j][i];
+			check_arr[j] = real_real_map[j][i];
 		}
 		check_result = checkUnity(check_arr);
 		if(check_result == false)
@@ -308,7 +308,7 @@ bool Sudoku::isCorrect()
 		{
 			for(int j=0;j<3;j++)
 			{
-				check_arr[3*i+j] = real_map[i][3*k+j];
+				check_arr[3*i+j] = real_real_map[i][3*k+j];
 			}
 		}
 		check_result = checkUnity(check_arr);
@@ -321,7 +321,7 @@ bool Sudoku::isCorrect()
 		{
 			for(int j=0;j<3;j++)
 			{
-				check_arr[3*i+j] = real_map[i+3][3*k+j];
+				check_arr[3*i+j] = real_real_map[i+3][3*k+j];
 			}
 		}
 		check_result = checkUnity(check_arr);
@@ -334,7 +334,7 @@ bool Sudoku::isCorrect()
 		{
 			for(int j=0;j<3;j++)
 			{
-				check_arr[3*i+j] = real_map[i+6][3*k+j];
+				check_arr[3*i+j] = real_real_map[i+6][3*k+j];
 			}
 		}
 		check_result = checkUnity(check_arr);
@@ -351,7 +351,7 @@ bool Sudoku::nozero()
 	{
 		for(int j=0;j<9;j++)
 		{
-			if(real_map[i][j] == 0)
+			if(real_real_map[i][j] == 0)
 			{
 				return false;
 			}
@@ -375,7 +375,7 @@ void Sudoku::possible(int arr[][9])
 	{
 		for(int j=0;j<9;j++)
 		{
-			if(real_map[i][j] == 0)
+			if(real_real_map[i][j] == 0)
 			{
 				row = i;
 				col = j;
@@ -441,7 +441,7 @@ void Sudoku::zero_position()
 	{
 		for(int j=0;j<9;j++)
 		{
-			if(real_map[i][j] == 0)
+			if(real_real_map[i][j] == 0)
 			{
 				zero_posRow[n] = i;
 				zero_posCol[n] = j;
@@ -456,8 +456,8 @@ void Sudoku::backtrack()
 	int k=0;
 	if(isCorrect() != true)
 	{
-		real_map[zero_posRow[index]][zero_posCol[index]] = 0;
-		possible(real_map);
+		real_real_map[zero_posRow[index]][zero_posCol[index]] = 0;
+		possible(real_real_map);
 		return;
 	}
 	if(nozero() == true)
@@ -466,26 +466,26 @@ void Sudoku::backtrack()
 		{
 			for(int j=0;j<9;j++)
 			{
-				ans[i][j] = real_map[i][j];
+				ans[i][j] = real_real_map[i][j];
 				answer++;
 				if(answer>=2)
 				{
 					cout << "2" << endl;
 					exit(0);
 				}
-				real_map[zero_posRow[index]][zero_posCol[index]] = 0;
-				possible(real_map);
+				real_real_map[zero_posRow[index]][zero_posCol[index]] = 0;
+				possible(real_real_map);
 				return;
 			}
 		}
 	}
-	possible(real_map);
+	possible(real_real_map);
 	index++;
 	if(possible_num[0] == 0)
 	{
 		index--;
-		real_map[zero_posRow[index]][zero_posCol[index]] = 0;
-		possible(real_map);
+		real_real_map[zero_posRow[index]][zero_posCol[index]] = 0;
+		possible(real_real_map);
 		return;
 	}
 	if(answer>=2)
@@ -495,15 +495,15 @@ void Sudoku::backtrack()
 	}
 	while(possible_num[k] > 0)
 	{
-		real_map[zero_posRow[index]][zero_posCol[index]] = possible_num[k];
+		real_real_map[zero_posRow[index]][zero_posCol[index]] = possible_num[k];
 		k++;
 		backtrack();
 	}
 	index--;
 	if(index<0)
 		return;
-	real_map[zero_posRow[index]][zero_posCol[index]] = 0;
-	possible(real_map);
+	real_real_map[zero_posRow[index]][zero_posCol[index]] = 0;
+	possible(real_real_map);
 }
 
 void Sudoku::solve()
