@@ -1,4 +1,4 @@
-#include "sudoku.h"
+#include "Sudoku.h"
 
 Sudoku::Sudoku()
 {
@@ -362,6 +362,7 @@ void Sudoku::possible(int arr[][9])
 	int existed[9];
 	int n=0;
 	int sRow, sCol;
+	int row, col;
 	for(int i=0;i<9;i++)
 	{
 		possible_num[i] = 0;
@@ -379,24 +380,24 @@ void Sudoku::possible(int arr[][9])
 			}
 		}
 	}
-	for(int j=0;j<9;i++)
+	for(int j=0;j<9;j++)
 	{
 		if(arr[row][j] != 0)
 		{
-			existed[real_map[row][j]-1] = 1;
+			existed[arr[row][j]-1] = 1;
 		}
 	}
 	for(int i=0;i<9;i++)
 	{
 		if(arr[i][col] != 0)
 		{
-			existed[real_map[i][col]-1] = 1;
+			existed[arr[i][col]-1] = 1;
 		}
 	}
 	if(row >= 0 && row<=2)
 		sRow = 0;
 	else if(row>=3 && row<=5)
-		sRow = 3
+		sRow = 3;
 	else if(row>=6 && row<=8)
 		sRow = 6;
 	if(col >= 0 && col<=2)
@@ -411,7 +412,7 @@ void Sudoku::possible(int arr[][9])
 		{
 			if(arr[i+sRow][j+sCol] != 0)
 			{
-				existed[[i+sRow][j+sCol]-1] = 1;
+				existed[arr[i+sRow][j+sCol]-1] = 1;
 			}
 		}
 	}
@@ -431,7 +432,7 @@ void Sudoku::zero_position()
 	for(int i=0;i<9;i++)
 	{
 		zero_posRow[i] = 0;
-		zero_posCol[i] = 0
+		zero_posCol[i] = 0;
 	}
 	for(int i=0;i<9;i++)
 	{
@@ -450,13 +451,13 @@ void Sudoku::zero_position()
 void Sudoku::backtrack()
 {
 	int k=0;
-	if(isCorrect != true)
+	if(isCorrect() != true)
 	{
-		real_map[[zero_posRow[index]][zero_posCol][index]] = 0;
+		real_map[zero_posRow[index]][zero_posCol][index] = 0;
 		possible(real_map);
 		return;
 	}
-	if(nozero == true)
+	if(nozero() == true)
 	{
 		for(int i=0;i<9;i++)
 		{
@@ -469,7 +470,7 @@ void Sudoku::backtrack()
 					cout << "2" << endl;
 					exit(0);
 				}
-				real_map[[zero_posRow[index]][zero_posCol[index]]] = 0;
+				real_map[zero_posRow[index]][zero_posCol[index]] = 0;
 				possible(real_map);
 				return;
 			}
