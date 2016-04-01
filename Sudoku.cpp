@@ -262,7 +262,14 @@ bool Sudoku::checkUnity(int arr[])
 	}
 	for(int i=0;i<9;i++)
 	{
-		++arr_unity[arr[i]-1];
+		if(arr[i] == 0)
+		{
+			continue;
+		}
+		else
+		{
+			arr_unity[arr[i]-1]++;
+		}
 	}
 	for(int i=0;i<9;i++)
 	{
@@ -364,8 +371,8 @@ void Sudoku::possible(int arr[][9])
 {
 	int existed[9];
 	int n=0;
-	int sRow, sCol;
-	int row, col;
+	int sRow=0, sCol=0;
+	int row=0, col=0;
 	for(int i=0;i<9;i++)
 	{
 		possible_num[i] = 0;
@@ -379,43 +386,44 @@ void Sudoku::possible(int arr[][9])
 			{
 				row = i;
 				col = j;
+				i=9;
 				break;
 			}
 		}
 	}
 	for(int j=0;j<9;j++)
 	{
-		if(arr[row][j] != 0)
+		if(real_map[row][j] != 0)
 		{
-			existed[arr[row][j]-1] = 1;
+			existed[real_map[row][j]-1] = 1;
 		}
 	}
 	for(int i=0;i<9;i++)
 	{
-		if(arr[i][col] != 0)
+		if(real_map[i][col] != 0)
 		{
-			existed[arr[i][col]-1] = 1;
+			existed[real_map[i][col]-1] = 1;
 		}
 	}
 	if(row >= 0 && row<=2)
-		sRow = 0;
+		{sRow = 0;}
 	else if(row>=3 && row<=5)
-		sRow = 3;
+		{sRow = 3;}
 	else if(row>=6 && row<=8)
-		sRow = 6;
+		{sRow = 6;}
 	if(col >= 0 && col<=2)
-         sCol = 0;
+         {sCol = 0;}
     else if(col>=3 && col<=5)
-         sCol = 3;
+         {sCol = 3;}
     else if(col>=6 && col<=8)
-         sCol = 6;
+         {sCol = 6;}
 	for(int i=0;i<3;i++)
 	{
 		for(int j=0;j<3;j++)
 		{
-			if(arr[i+sRow][j+sCol] != 0)
+			if(real_map[i+sRow][j+sCol] != 0)
 			{
-				existed[arr[i+sRow][j+sCol]-1] = 1;
+				existed[real_map[i+sRow][j+sCol]-1] = 1;
 			}
 		}
 	}
@@ -432,7 +440,7 @@ void Sudoku::possible(int arr[][9])
 void Sudoku::zero_position()
 {
 	int n=0;
-	for(int i=0;i<9;i++)
+	for(int i=0;i<81;i++)
 	{
 		zero_posRow[i] = 0;
 		zero_posCol[i] = 0;
@@ -452,7 +460,7 @@ void Sudoku::zero_position()
 }
 
 void Sudoku::backtrack()
-{	
+{
 	if(isCorrect() != true)
 	{
 		real_map[zero_posRow[index]][zero_posCol[index]] = 0;
@@ -466,17 +474,17 @@ void Sudoku::backtrack()
 			for(int j=0;j<9;j++)
 			{
 				ans[i][j] = real_map[i][j];
-				answer++;
-				if(answer>=2)
-				{
-					cout << "2" << endl;
-					exit(0);
-				}
-				real_map[zero_posRow[index]][zero_posCol[index]] = 0;
-				possible(real_map);
-				return;
 			}
 		}
+		answer++;
+		if(answer>=2)
+		{
+			cout << "2" << endl;
+			exit(0);
+		}
+		real_map[zero_posRow[index]][zero_posCol[index]] = 0;
+		possible(real_map);
+		return;
 	}
 	possible(real_map);
 	index++;
@@ -494,12 +502,14 @@ void Sudoku::backtrack()
 	}
 	for(int i=0;possible_num[i]>0;i++)
 	{
-		real_map[zero_posRow[index]][zero_posCol[index]] = possible_num[k];
-		backtrack();
+		real_map[zero_posRow[index]][zero_posCol[index]]=possible_num[i];
+		backtrack();	
 	}
 	index--;
 	if(index<0)
+	{
 		return;
+	}
 	real_map[zero_posRow[index]][zero_posCol[index]] = 0;
 	possible(real_map);
 }
@@ -530,7 +540,7 @@ void Sudoku::solve()
 	backtrack();
 	if(answer == 0)
 	{
-		cout << "0" <<endl;
+		cout << "0";
 		exit(0);
 	}
 	else if(answer == 1)
