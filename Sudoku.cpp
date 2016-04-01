@@ -10,16 +10,15 @@ Sudoku::Sudoku()
 			map[i][j] = 0;
 		}
 	}
+	transform();
 }
 
 void Sudoku::giveQuestion()
 {
-	transform();
 	for(int i=0;i<9;i++)
 	{
 		for(int j=0;j<9;j++)
 		{
-			real_map[i][j] = map[i][j];
 			cout << real_map[i][j] << " ";
 		}
 		cout << endl;
@@ -28,15 +27,13 @@ void Sudoku::giveQuestion()
 
 void Sudoku::readIn()
 {
-	int map[9][9] = {{0,3,0,5,0,0,8,0,4},
-				 {0,0,0,0,7,0,0,6,0},
-				 {0,8,0,2,3,0,9,1,5},
-				 {0,0,8,0,5,3,2,0,0},
-				 {0,0,0,9,0,2,0,0,0},
-				 {0,0,5,1,8,0,4,0,0},
-				 {9,2,7,0,6,8,0,5,0},
-				 {0,1,0,0,2,0,0,0,0},
-				 {5,0,6,0,0,1,0,2,0}};
+	for(int i=0;i<9;i++)
+	{
+		for(int j=0;j<9;j++)
+		{
+			real_map[i][j] = map[i][j];
+		}
+	}
 }
 
 void Sudoku::transform()
