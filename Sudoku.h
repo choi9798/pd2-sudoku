@@ -28,6 +28,6 @@ class Sudoku {
 		int possible_num[9];
 		int zero_posRow[81];
 		int zero_posCol[81];
-		int answer = 0;
+		int answer;
 		int index;
 };

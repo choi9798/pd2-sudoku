@@ -225,7 +225,6 @@ void Sudoku::rotate(int n)
 			}
 		}
 	}
-}
 	else if(n%4 == 3)
 	{
 		for(int i=0;i<9;i++)

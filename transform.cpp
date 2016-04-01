@@ -1,17 +1,9 @@
-#include "sudoku.h"
+#include "Sudoku.h"
 
-void Sudoku::transform()
+int main()
 {
-	readIn();
-	change();
-}
-
-void Sudoku::change()
-{
-	srand(time(NULL));
-	changeNum(rand()%9, rand()%9, rand()%9, rand()%9);
-	changeRow(rand()%3, rand()%3);
-	changeCol(rand()%3, rand()%3);
-	rotate(rand()%101);
-	flip(rand()%2);
+	Sudoku ss;
+	ss.readIn();
+	ss.transform();
+	return 0;
 }
