@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cstdlib>
+#include<ctime>
 using namespace std;
 
 class Sudoku {
@@ -7,6 +8,8 @@ class Sudoku {
 		void giveQuestion();
 		void readIn();
 		void solve();
+		void change();
+		void printOut(bool isAns);
 		void changeNum(int a, int b);
 		void changeRow(int a, int b);
 		void changeCol(int a, int b);
