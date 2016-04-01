@@ -20,7 +20,9 @@ void Sudoku::giveQuestion()
 		for(int j=0;j<9;j++)
 		{
 			real_map[i][j] = map[i][j];
+			cout << real_map[i][j] << " ";
 		}
+		cout << endl;
 	}
 }
 
