@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<cstdlib>
+using namespace std;
 
 class Sudoku {
 	public:
