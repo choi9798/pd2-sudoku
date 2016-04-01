@@ -26,7 +26,7 @@ void Sudoku::giveQuestion()
 	{
 		for(int j=0;j<9;j++)
 		{
-			map[i][j] = orginal[i][j];
+			map[i][j] = original[i][j];
 		}
 	}
 	transform();
