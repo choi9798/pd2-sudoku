@@ -403,7 +403,7 @@ void Sudoku::possible(int arr[][9])
 	if(col >= 0 && col<=2)
          sCol = 0;
     else if(col>=3 && col<=5)
-         sCol = 3
+         sCol = 3;
     else if(col>=6 && col<=8)
          sCol = 6;
 	for(int i=0;i<3;i++)
@@ -453,7 +453,7 @@ void Sudoku::backtrack()
 	int k=0;
 	if(isCorrect() != true)
 	{
-		real_map[zero_posRow[index]][zero_posCol][index] = 0;
+		real_map[zero_posRow[index]][zero_posCol[index]] = 0;
 		possible(real_map);
 		return;
 	}
