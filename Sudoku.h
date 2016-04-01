@@ -15,8 +15,8 @@ class Sudoku {
 		void flip(int n);
 		void transform();
 		bool checkUnity(int arr[]);
-		bool isCorrect() = true;
-		bool nozero() = false;
+		bool isCorrect();
+		bool nozero();
 		void zero_position();
 		void possible(int arr[][9]);
 		void backtrack();
