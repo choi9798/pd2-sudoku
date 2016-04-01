@@ -7,7 +7,6 @@ Sudoku::Sudoku()
 		for(int j=0;j<9;j++)
 		{
 			real_map[i][j] = 0;
-			map[i][j] = 0;
 		}
 	}
 	transform();
@@ -262,7 +261,7 @@ bool Sudoku::checkUnity(int arr[])
 	}
 	for(int i=0;i<9;i++)
 	{
-		if(arr_unity[i] != 1)
+		if(arr_unity[i] > 1)
 			return false;
 	}
 	return true;
@@ -285,7 +284,7 @@ bool Sudoku::isCorrect()
 			return false;
 		}
 	}
-	for(int i=0;i<9;i++) // check columns
+/*	for(int i=0;i<9;i++) // check columns
 	{
 		for(int j=0;j<9;j++)
 		{
@@ -296,9 +295,9 @@ bool Sudoku::isCorrect()
 		{
 			return false;
 		}
-	}
+	}*/
 	/* check cells */
-	for(int k=0;k<3;k++)
+	/*for(int k=0;k<3;k++)
 	{
 		for(int i=0;i<3;i++)
 		{
@@ -336,7 +335,7 @@ bool Sudoku::isCorrect()
 		check_result = checkUnity(check_arr);
 		if(check_result == false)
 			return false;
-	}
+	}*/
 	/* check cells */
 	return true;
 }
